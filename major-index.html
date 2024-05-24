@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Docker-GUI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<p class="ph"><b>Shubhangi Thakur</b></p>
+<p class="phh"><b>Rishabh Patidar</b></p>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="backend.js">
+
+  </script>
+  <style>
+    body {
+      font-family:sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+  /* The popup form - hidden by default */
+  .ph{
+    margin-left: 1300px;
+    margin-top: 600px;
+    color: white;
+    font-family: Georgia, serif;
+  }
+  @media only screen and (max-width: 600px) {
+    .ph{
+    margin-left: 115px;
+    color: white;
+  }}
+  .phh{
+    margin-left: 1300px;
+    margin-top: 10px;
+    color: white;
+    font-family: Georgia, serif;
+  }
+  @media only screen and (max-width: 600px) {
+    .phh{
+    margin-left: 115px;
+    color: white;
+  }}   
+  .form-popup {
+    display: none;
+    position: absolute;
+    top: 55px;
+    left: 25px;
+    border: 5px solid black;
+    z-index: 9;
+    border-radius: 10px;
+  }
+  .form-popup2 {
+      display: none;
+      position: absolute;
+      top: 25px;
+      left: 24px;
+      border: 5px solid black;
+      z-index: 9;
+      border-radius: 10px
+    } 
+ 
+  .form-popup3 {
+        display: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border: 5px solid black;
+        z-index: 9;
+        border-radius: 10px
+      }
+
+
+    /* Add styles to the form container */
+    .form-container,
+    .form-container2 {
+      min-width: 300px;
+      max-width: 300px;
+      min-height: 300px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+    }
+    .form-container3 {
+      min-width: 350px;
+      max-height: 500px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+    }
+    @media only screen and (max-width: 600px) {
+      .form-popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 25px;
+    border: 10px solid #f1f1f1;
+    z-index: 9;
+  }
+  .form-popup2 {
+      display: none;
+      position: absolute;
+      top: 25px;
+      left: 50px;
+      border: 10px solid #f1f1f1;
+      z-index: 9;
+    } 
+      .form-popup3 {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        left: 30px;
+        border: 10px solid #f1f1f1;
+        z-index: 9;
+      }}
+    
+   
+    
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=text],
+    .form-container2 input[type=text],
+    .form-container3 input[type=text] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=text]:focus,
+    .form-container2 input[type=text]:focus,
+    .form-container3 input[type=text]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn,
+    .form-container2 .btn2 {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+    .form-container3 .btn3 {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 49%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+    /* Add a red background color to the cancel button */
+    .form-container .cancel,
+    .form-container2 .cancel2,
+    .form-container3 .cancel3 {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .form-container2 .btn2:hover,
+    .form-container3 .btn3:hover {
+      opacity: 1;
+    }
+
+    .button {
+      background-color: white;
+      /* Green */
+      min-width: 200px;
+      border: none;
+      color: black;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 35px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+
+    .output {
+      position: absolute;
+      top: 49%;
+
+      overflow: scroll;
+      left: 30.5%;
+      right: 30%;
+      width: 36%;
+      scroll-behavior: smooth;
+      bottom: 22%;
+      background-color: rgb(245, 245, 245);
+      opacity: 0.9;
+    }
+
+
+
+    .button1 {
+      background-color: white;
+      color: black;
+      border: 5px solid #4CAF50;
+      border-radius: 10px;
+      box-shadow: 2px 3px 2px 1px  #707374;
+      position: absolute; left: 21px; top: 50px;
+    }
+
+    .button1:hover {
+      background-color: #4CAF50;
+    
+      color: white;
+    }
+    @media only screen and (max-width: 600px) {
+    
+    
+    .button {
+      background-color: white;
+      /* Green */
+      min-width: 100px;
+      border: none;
+      color: black;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: white;
+      color: black;
+      border: 5px solid #4CAF50;
+      border-radius: 10px;
+      box-shadow: 2px 3px 2px 1px #707374;
+      position: absolute; left: 21px; top: 34px;
+    }
+
+    .button1:hover {
+      background-color: #4CAF50;
+    
+      color: white;
+    }
+
+    
+    .output {
+      position: absolute;
+      top: 49%;
+
+      overflow: scroll;
+      left: 12.5%;
+      right: 30%;
+      width: 72%;
+      scroll-behavior: smooth;
+      bottom: 22%;
+      background-color: rgb(245, 245, 245);
+      opacity: 0.9;
+    }
+  }
+
+  .button2 {
+      background-color: white;
+      color: black;
+      border: 5px solid #008CBA;
+    }
+
+    .button2:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+
+
+    .button3 {
+      background-color: white;
+      color: black;
+      border: 5px solid #f44336;
+      border-radius: 10px;
+      box-shadow: 2px 3px 2px 1px #707374;
+      position: absolute; left: 21px; top: 170px;
+    }
+
+    .button3:hover {
+      background-color: #f44336;
+      color: white;
+    }
+    @media only screen and (max-width: 600px) {
+
+ .button3 {
+      background-color: white;
+      color: black;
+      border: 5px solid #f44336;
+      border-radius: 10px;
+      box-shadow: 2px 3px 2px 1px #707374;
+      position: absolute; left: 255px; top: 34px;
+    }
+
+    .button3:hover {
+      background-color: #f44336;
+      color: white;
+    }}
+
+
+    .button4 {
+      background-color: rgb(240, 239, 241);
+      color: black;
+      float: left;
+      border-radius: 10px;
+      border: 5px solid #100f0f;
+      box-shadow: 2px 3px 2px 1px #707374;
+      position: absolute; right: 20px; top: 102px;
+    }
+
+    .button4:hover {
+      background-color: rgb(10, 10, 10);
+      color: white;
+      border: 5px solid #fefdfd;
+     
+    }
+
+    @media only screen and (max-width: 600px) {
+
+      .button4 {
+      background-color: rgb(240, 239, 241);
+      color: black;
+      float: left;
+      border-radius: 10px;
+      border: 5px solid #100f0f;
+      box-shadow: 2px 3px 2px 1px #707374;
+      position: absolute; right: 125px; top: 102px;
+    }
+
+    .button4:hover {
+      background-color: rgb(10, 10, 10);
+      color: white;
+      border: 5px solid #fefdfd;
+     
+    }
+  }
+
+
+    body {
+      background-image: url('images.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+
+    }
+
+
+
+
+
+
+    .popup{
+    background-color: white;
+    width: 450px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 48.5%;
+    top: 18%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    font-color: #EA738D;
+    display: none;
+    text-align: center;
+    box-shadow: 2px 4px 4px 2px #707374;    
+}
+.popup button{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #0d0d0d;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+/* a{
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #0f72e5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 0;
+} */
+
+@media only screen and (max-width: 600px) {
+
+.popup{
+   background-color: darkorange;
+   width: 360px;
+
+   padding: 30px 40px;
+   position: absolute;
+   transform: translate(-50%,-50%);
+   left: 48.5%;
+   top: 30%;
+   border-radius: 8px;
+   font-family: "Poppins",sans-serif;
+   /* display: none; */
+   text-align: center;
+   box-shadow: 5px 4px 4px 5px #707374;    
+}
+
+}
+
+  </style>
+
+  <script src="backend.js"></script>
+</head>
+
+<body>
+
+
+  <div class="popup">
+    <button id="close">&times;</button>
+    <h2>Welcome to Docker GUI</h2>
+    <p>
+      <b>  Here you can easily create/delete docker containers and run your linux commands.</b>
+    </p>
+  <b> Let's Go</b>
+</div>
+
+
+
+
+
+
+  
+
+  <button class="button button1" 
+    onclick="openForm1()" data-aos="fade-left">Launch</button>
+  <div class="form-popup" id="myForm">
+    <div class="form-container">
+
+      <label style="text-align: center;" for="container"><b>Container Name</b></label>
+      <input id="container_name" type="text" placeholder="Enter name" value="" required>
+
+      <label for="image"><b>Image Name</b></label>
+      <input id="image_name" type="text" placeholder="Enter name" value="" required>
+
+      <button type="submit" class="btn" onclick="create();">Launch</button>
+      <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
+    </div>
+  </div>
+
+  <button class="button button3"
+    onclick="openForm3()" data-aos="fade-right">Delete</button>
+  <div class="form-popup2" id="myForm2">
+    <div class="form-container2">
+
+      <label style="text-align: center;" for="container"><b>Container ID/Name</b></label><br><br>
+      <input id="del_name" type="text" placeholder="Enter name" value="" required> <br><br><br><br><br>
+      <button type="submit" class="btn2" onclick="del();">Delete</button>
+      <button type="button" class="btn2 cancel2" onclick="closeForm3()">Close</button>
+    </div>
+  </div>
+
+  <button class="button button4" onclick="openForm4()" data-aos="fade-up">Run
+    command</button>
+  <div class="form-popup3" id="myForm3">
+    <div class="form-container3">
+      <h4>[root@localhost ~]#</h4>
+      <input id="command_name" type="text" placeholder="Enter command" value="" required> <br><br><br>
+      <button type="submit" class="btn3" onclick="run();">Submit</button>
+      <button type="button" class="btn3 cancel3" onclick="closeForm4()">Close</button>
+    </div>
+  </div>
+
+  <div class="output">
+    <center>
+      <br>
+      <b>Output will be displayed here:<b><br>
+      <pre><p id="output_id"> </p></pre>
+    </center>
+  </div>
+
+  <!-- <center>
+    <h1 style="width:50%; text-align: center; font-size: 45px;font-family: 'Courier New', Courier, monospace;"><span
+        style="color: whitesmoke;">Docker using GUI</span></h1>
+  </center> -->
+
+</body>
+
+
+
+</html>
+<script>
+  function openForm1() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm1() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  function openForm3() {
+    document.getElementById("myForm2").style.display = "block";
+  }
+
+  function closeForm3() {
+    document.getElementById("myForm2").style.display = "none";
+  }
+
+  function openForm4() {
+    document.getElementById("myForm3").style.display = "block";
+  }
+
+  function closeForm4() {
+    document.getElementById("myForm3").style.display = "none";
+  }
+
+</script>
+  
+  
+  
+  <script>
+  window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".popup").style.display = "block";
+        },
+        1000
+    )
+});
+document.querySelector("#close").addEventListener("click", function(){
+    document.querySelector(".popup").style.display = "none";
+});
+
+
+</script>
+
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            offset: 500,
+            duration: 2000,
+        });
+        </script>
